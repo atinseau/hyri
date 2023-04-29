@@ -1,5 +1,5 @@
 import HyriContext from "bin/HyriContext";
-import { directoryExists } from "utils/files";
+import { directoryExists, getAllFiles, matchExtension } from "utils/files";
 import fs from "fs";
 
 import {
@@ -12,9 +12,13 @@ import {
 class HyriClient {
 
   private appPath: string
+  // private transpiler: InstanceType<typeof Bun.Transpiler>
 
   constructor() {
     this.appPath = HyriContext.hyriConfig.appPath
+    // this.transpiler = new Bun.Transpiler({
+    //   loader: 'tsx'
+    // })
   }
 
   private async bootstrapFile(bootstrapModule: BootstrapModule) {
@@ -36,19 +40,30 @@ class HyriClient {
     await Promise.all(queue)
   }
 
-  private async bundle(entryPoint: string) {
+  
+  // private async transpile(content: string) {
+  //   const result = await this.transpiler.transform(content)
+  //   return result
+  // }
 
-    console.log(entryPoint)
+  private async bundle() {
+    let output = ""
+
+    const files = getAllFiles(this.appPath).filter((file) => (
+      matchExtension(file, ALLOWED_FILES)
+      && !matchExtension(file, IGNORED_FILES)
+    ))
+
+    if (!directoryExists(this.appPath + "/" +  BUILD_DIR)) {
+      fs.mkdirSync(this.appPath + "/" +  BUILD_DIR)
+    }
+
+    console.log(files)
   }
 
   private async build() {
     this.bootstrap()
-    const packageJson = await HyriContext.loadPackageJson()
-    if (!packageJson) {
-      throw new Error("No package.json found")
-    }
-    const mainPath = this.appPath + "/" + packageJson.main
-    await this.bundle(mainPath)
+    await this.bundle()
   }
 
   run() {

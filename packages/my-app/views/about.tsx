@@ -5,10 +5,10 @@ interface Props {
   name: string;
 }
 
-async function About () {
+async function About() {
   return <div>
     <h1>About !</h1>
-    <Wait time={1}/>
+    <Wait time={1} />
     <a href="/">Home</a>
   </div>
 }
