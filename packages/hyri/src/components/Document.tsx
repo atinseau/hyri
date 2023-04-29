@@ -10,7 +10,9 @@ export function Document({ children }: Props) {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-      {children}
+      <div id="app">
+        {children}
+      </div>
     </body>
   </html>
 }

@@ -7,9 +7,6 @@ interface Props {
 }
 
 async function Page () {
-
-  console.log("salut")
-
   return <div>
     <h1>Salut !</h1>
     <Wait time={1}/>

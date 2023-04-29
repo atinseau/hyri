@@ -1,6 +1,7 @@
 import { Elysia } from 'elysia'
 import createResponse from '../lib/createResponse'
 import logger from 'common/logger'
+import { bootstrap } from './routes'
 
 class Server {
 
@@ -20,6 +21,8 @@ class Server {
     })
     this.port = ServerConfig.port
 
+    this.loadInternalRoutes()
+
     if (ServerConfig.views) {
       for (const view of ServerConfig.views) {
         this.registerView(view)
@@ -34,6 +37,11 @@ class Server {
 
   private registerView(view: View) {
     this.Server[view.route.method || 'get'](view.route.path, this.routeHandler.bind(this, view))
+  }
+
+  private loadInternalRoutes() {
+    this.Server
+      .use(bootstrap)
   }
 
   private async routeHandler(view: View /**, ctx: Context */) {

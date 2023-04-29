@@ -1,4 +1,17 @@
 
+namespace JSX {
+  export type ElementType =
+    | keyof IntrinsicElements
+    | ((props: any) => Element)
+    | FunctionComponent<{}>
+}
+
+type BootstrapModule = {
+  module: string
+  output: string
+  path: string
+}
+
 // Server types
 
 type AsyncComponent = () => Promise<JSX.Element> | JSX.Element

@@ -10,6 +10,7 @@ const HyriConfigSchema = z.object({
 
 function getHyriConfig() {
   const argv = process.argv.slice(2)
+
   const config = {
     command: argv[0]
   }
