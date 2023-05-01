@@ -1,4 +1,4 @@
-import renderAsyncComponent from "hyri/src/lib/renderAsyncComponent";
+import renderAsyncComponent from "./renderAsyncComponent";
 
 /**
  * It will wrap automatically all components context for Hybrid rendering

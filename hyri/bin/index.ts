@@ -1,5 +1,5 @@
-import Hyri from "hyri/bin/Hyri";
-import { getHyriConfig } from "hyri/bin/lib/hyriConfig";
+import Hyri from "./Hyri";
+import { getHyriConfig } from "./lib/hyriConfig";
 import logger from "common/logger";
 
 try {

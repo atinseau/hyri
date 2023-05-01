@@ -37,6 +37,9 @@ function spawnMode(mode: HyriCommand) {
 function createHyriProcess(hyriProcess: HyriProcess) {
   const { entryPoint } = hyriProcess
   const spawnArgs = spawnMode(hyriProcess.mode)
+
+  console.log(entryPoint)
+
   const proc = Bun.spawn(["bun", ...spawnArgs, entryPoint]);
   if (!proc.stdout) {
     throw new Error('No stdout in process')

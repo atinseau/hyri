@@ -1,7 +1,7 @@
 import { Elysia } from 'elysia'
-import createResponse from 'hyri/src/lib/createResponse'
+import createResponse from '../lib/createResponse'
 import logger from 'common/logger'
-import { bootstrap } from 'hyri/src/server/routes'
+import { bootstrap } from '../server/routes'
 
 class Server {
 

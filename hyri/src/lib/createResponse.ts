@@ -1,4 +1,4 @@
-import renderView from "hyri/src/lib/renderView";
+import renderView from "./renderView";
 
 async function createResponse(component: AsyncComponent) {
   const stream = await renderView(component);

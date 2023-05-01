@@ -1,19 +1,16 @@
 {
   "name": "react-hybrid-rendering",
-  "module": "index.ts",
+  "main": "index.ts",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "echo salut",
+    "dev": "bun x hyri dev",
     "clean": "rm -rf node_modules bun.lockb"
   },
   "dependencies": {
-    "chalk": "^5.2.0",
-    "elysia": "0.4.13",
+    "hyri": "link:hyri",
     "react": "experimental",
-    "react-dom": "experimental",
-    "react-server-dom-webpack": "0.0.0-experimental-819687279-20221208",
-    "zod": "^3.21.4"
+    "react-dom": "experimental"
   },
   "devDependencies": {
     "@types/react": "18.2.0",

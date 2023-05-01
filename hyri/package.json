@@ -2,7 +2,24 @@
   "name": "hyri",
   "version": "0.0.0",
   "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf node_modules bun.lockb"
+  },
   "bin": {
-    "hyri": "./bin/index.ts"
+    "hyri": "./bin/run.sh"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "elysia": "0.4.13",
+    "react": "experimental",
+    "react-dom": "experimental",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
+    "bun-types": "0.5.8",
+    "typescript": "beta"
   }
 }

@@ -1,4 +1,4 @@
-import HyriContext from "bin/HyriContext";
+import HyriContext from "../HyriContext";
 import { directoryExists, getAllFiles, matchExtension } from "utils/files";
 import fs from "fs";
 

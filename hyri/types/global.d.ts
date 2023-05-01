@@ -41,5 +41,5 @@ interface HyriConfig extends MinimalHyriConfig {
 }
 
 type PackageJson = {
-  main: string
+  main?: string
 }

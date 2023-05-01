@@ -1,4 +1,4 @@
-import Server from "hyri/src/server/Server";
+import Server from "./server/Server";
 
 export {
   Server
