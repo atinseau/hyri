@@ -1,0 +1,8 @@
+{
+  "name": "hyri",
+  "version": "0.0.0",
+  "main": "src/index.ts",
+  "bin": {
+    "hyri": "./bin/index.ts"
+  }
+}
