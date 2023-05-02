@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "chalk": "^5.2.0",
+    "echo": "^0.1.9",
     "elysia": "0.4.13",
-    "react": "experimental",
-    "react-dom": "experimental",
+    "salut": "^1.0.0",
     "zod": "^3.21.4"
+  },
+  "peerDependencies": {
+    "react": "experimental",
+    "react-dom": "experimental"
   },
   "devDependencies": {
     "@types/react": "18.2.0",
