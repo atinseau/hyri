@@ -1,0 +1,11 @@
+{
+  "name": "my-app",
+  "scripts": {
+    "dev": "hyri dev",
+    "build": "hyri build",
+    "start": "hyri start"
+  },
+  "dependencies": {
+    "hyri": "workspace:*"
+  }
+}

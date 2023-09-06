@@ -1,0 +1,11 @@
+{
+  "name": "hyri-project",
+  "private": true,
+  "scripts": {
+    "dev:app": "cd apps/my-app && bun run dev"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ]
+}

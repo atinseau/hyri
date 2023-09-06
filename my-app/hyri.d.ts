@@ -1,1 +1,0 @@
-/// <reference types="hyri/types/global.d.ts" />
