@@ -1,26 +1,13 @@
 #!/usr/bin/env bun
 import { createServerProcess } from "../src/build/server/init";
-import { initConfigContext } from "../src/context/configContext";
-import { initGlobalContext } from "../src/context/globalContext";
-import { checkHyriConfig, getHyriConfig } from "../src/utils/config";
-import { getPackageJson } from "../src/utils/fileSystem";
+import { importHyriConfig } from "../src/utils/config";
 
-await initGlobalContext()
-
-const currentPackageJson = getPackageJson();
-const currentHyriConfig = await getHyriConfig();
-
-const isValid = await checkHyriConfig(currentHyriConfig);
-
-if (isValid) {
-
-  const configContext = initConfigContext({
-    packageJson: currentPackageJson,
-    hyriConfig: currentHyriConfig
-  })
-
-  await createServerProcess()
-
-} else {
+try {
+  const currentHyriConfig = await importHyriConfig();
+  await createServerProcess(currentHyriConfig);
+} catch (error) {
+  console.error(error)
   process.exit(1)
 }
+
+

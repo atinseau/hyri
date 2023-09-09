@@ -1,6 +1,4 @@
-import globalContext from "../context/globalContext";
 import { PackageJson } from "../types/packageJson";
-
 import { existsSync } from 'fs'
 
 
@@ -13,14 +11,20 @@ function directoryExists(path: string) {
 }
 
 
+const getExecutionPath = (): string => {
+  return process.cwd()
+}
+
 const getPackageJson = (): PackageJson => {
-  const packageJson = require(`${globalContext.executionPath}` + '/package.json');
+  const packageJson = require(`${getExecutionPath()}` + '/package.json');
   return packageJson;
 }
+
 
 
 export {
   fileExists,
   directoryExists,
-  getPackageJson
+  getPackageJson,
+  getExecutionPath
 }
