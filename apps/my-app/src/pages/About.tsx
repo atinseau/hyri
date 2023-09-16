@@ -1,14 +1,19 @@
-import { useState } from "hyri-preact/hooks"
+import { useEffect, useState } from "hyri-preact/hooks";
 
 const About = () => {
+  const [count, setCount] = useState(0);
 
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    console.log("salut tout le monde")
+  }, [])
 
-  return <p>
-    SAlut tout le monde
-    <a href="/">Home</a>
-    <button onClick={() => setCount(count + 1)}>{count}</button>
-  </p>
+  return (
+    <div>
+      <p>salut tout le monde</p>
+      <p>Counter: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
 }
 
-export default About
+export default About;

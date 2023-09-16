@@ -35,10 +35,8 @@
     "build": "bun run build:preact && bun run build:hooks && bun run build:jsx-runtime"
   },
   "files": [
-    "src",
     "dist",
-    "hooks/dist",
-    "hooks/src"
+    "hooks/dist"
   ],
   "devDependencies": {
     "bun-types": "1.0.2"

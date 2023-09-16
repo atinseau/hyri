@@ -7,7 +7,7 @@ const getHydrateImport = () => {
 }
 
 const getHydrateCall = (componentName: string) => {
-  return `hydrate(${componentName}(), document.getElementById('root'))`
+  return `hydrate(jsxDEV(${componentName}, {}, void 0, false, {}, this), document.getElementById('root'))`
 }
 
 const generateViewScript = async (viewPath: string) => {
@@ -17,6 +17,7 @@ const generateViewScript = async (viewPath: string) => {
     entrypoints: [viewPath],
     outdir: '.hyri',
     external: ['hyri-preact'],
+    splitting: true,
   })
 
   const viewScriptPath = result.outputs[0].path

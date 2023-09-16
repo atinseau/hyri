@@ -8,9 +8,6 @@ type CreateHtmlTreeOptions = {
 }
 
 const generateImportMap = () => {
-
-  console.log(serverContext)
-
   return {
     "imports": {
       "hyri-preact": "/_hyri/preact.js",
