@@ -1,10 +1,6 @@
 
-const test = () => {
-    return (
-        <div>
-            <h1>Teqsdqsqdqsdqsdqsdsdst</h1>
-        </div>
-    )
+const Test = () => {
+    return undefined
 }
 
-export default test
+export default Test

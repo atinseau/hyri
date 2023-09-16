@@ -1,7 +1,6 @@
 import { PackageJson } from "../types/packageJson";
 import { existsSync } from 'fs'
 
-
 async function fileExists(path: string) {
   return await Bun.file(path).exists()
 }
@@ -19,7 +18,6 @@ const getPackageJson = (): PackageJson => {
   const packageJson = require(`${getExecutionPath()}` + '/package.json');
   return packageJson;
 }
-
 
 
 export {

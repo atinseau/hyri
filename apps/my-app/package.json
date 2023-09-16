@@ -6,6 +6,7 @@
     "start": "hyri start"
   },
   "dependencies": {
-    "hyri": "workspace:*"
+    "hyri": "workspace:*",
+    "hyri-preact": "workspace:*"
   }
 }

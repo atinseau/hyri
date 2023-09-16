@@ -1,0 +1,36 @@
+{
+  "name": "hyri-preact",
+  "version": "0.0.1",
+  "main": "dist/preact.js",
+  "source": "src/index.js",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./dist/preact.js"
+    },
+    "./hooks": {
+      "types": "./hooks/src/index.d.ts",
+      "import": "./hooks/dist/hooks.js"
+    },
+    "./jsx-runtime": {
+      "types": "./jsx-runtime/src/index.d.ts",
+      "import": "./jsx-runtime/dist/jsx-runtime.js"
+    }
+  },
+  "types": "src/index.d.ts",
+  "scripts": {
+    "build:preact": "bun build ./src/index.js --outdir ./dist --sourcemap=external --minify",
+    "build:hooks": "bun build ./hooks/src/index.js --outdir ./hooks/dist --external hyri-preact --sourcemap=external --minify",
+    "build:jsx-runtime": "bun build ./jsx-runtime/src/index.js --outdir ./jsx-runtime/dist --external hyri-preact --sourcemap=external --minify",
+    "build": "bun run build:preact && bun run build:hooks && bun run build:jsx-runtime"
+  },
+  "files": [
+    "src",
+    "dist",
+    "hooks/dist",
+    "hooks/src"
+  ],
+  "devDependencies": {
+    "bun-types": "1.0.2"
+  }
+}

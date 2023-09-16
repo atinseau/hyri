@@ -22,44 +22,33 @@ function define(hyriConfig: HyriConfig) {
   return hyriConfig
 }
 
-function defaultConfig(): HyriConfigRequired {
-  return {
-    pagesDir: 'src/pages'
-  }
-}
 
-
-const checkHyriConfig = async (hyriConfig: HyriConfigRequired): Promise<boolean> => {
+const checkHyriConfig = async (hyriConfig: HyriConfigRequired) => {
   const parseResult = HyriConfigRequiredSchema.safeParse(hyriConfig);
-
   // Check if the hyri config is valid
   if (!parseResult.success) {
     throw new Error('Invalid hyri.config.ts file')
   }
-
-  if (!directoryExists(hyriConfig.pagesDir)) {
-    throw new Error(`Pages directory ${hyriConfig.pagesDir} does not exist`)
-  }
-
-  return true
+  return parseResult.data as HyriConfigRequired
 }
 
-
-const importHyriConfig = async (): Promise<HyriConfigRequired> => {
-  const hyriConfigExists = await fileExists(`${getExecutionPath()}` + '/hyri.config.ts')
-  if (!hyriConfigExists) {
-    print.warning('No hyri.config.ts file found, using default configuration')
-    return defaultConfig()
-  }
+const importHyriConfig = () => {
   const hyriConfig = require(`${getExecutionPath()}` + '/hyri.config.ts');
   if (!('default' in hyriConfig)) {
-    print.warning('No default export found in hyri.config.ts file, using default configuration')
-    return defaultConfig()
+    throw new Error('No default export found in hyri.config.ts file')
   }
+  return hyriConfig.default as HyriConfigRequired
+}
 
+const getHyriConfig = async (): Promise<HyriConfigRequired> => {
   try {
-    await checkHyriConfig(hyriConfig.default)
-    return hyriConfig.default
+    const hyriConfigExists = await fileExists(`${getExecutionPath()}` + '/hyri.config.ts')
+    if (!hyriConfigExists) {
+      throw new Error('No hyri.config.ts file found')
+    }
+    const hyriConfig = importHyriConfig()
+
+    return await checkHyriConfig(hyriConfig)
   } catch (error) {
     print.error(error)
     throw error
@@ -68,7 +57,7 @@ const importHyriConfig = async (): Promise<HyriConfigRequired> => {
 
 export {
   define,
-  defaultConfig,
+  importHyriConfig,
   checkHyriConfig,
-  importHyriConfig
+  getHyriConfig
 }
