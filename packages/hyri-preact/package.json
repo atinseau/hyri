@@ -1,26 +1,36 @@
 {
   "name": "hyri-preact",
   "version": "0.0.1",
-  "main": "dist/preact.js",
+  "main": "dist/index.js",
   "source": "src/index.js",
   "exports": {
     ".": {
       "types": "./src/index.d.ts",
-      "import": "./dist/preact.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
     },
     "./hooks": {
       "types": "./hooks/src/index.d.ts",
-      "import": "./hooks/dist/hooks.js"
+      "import": "./hooks/dist/index.js",
+      "require": "./hooks/dist/index.js"
     },
     "./jsx-runtime": {
       "types": "./jsx-runtime/src/index.d.ts",
-      "import": "./jsx-runtime/dist/jsx-runtime.js"
+      "import": "./jsx-runtime/dist/index.js",
+      "require": "./jsx-runtime/dist/index.js"
+    },
+    "./jsx-dev-runtime": {
+      "types": "./jsx-runtime/src/index.d.ts",
+      "import": "./jsx-runtime/dist/index.js",
+      "require": "./jsx-runtime/dist/index.js"
     }
   },
   "types": "src/index.d.ts",
   "scripts": {
     "build:preact": "bun build ./src/index.js --outdir ./dist --sourcemap=external --minify",
+    "dev:preact": "bun run build:preact --watch",
     "build:hooks": "bun build ./hooks/src/index.js --outdir ./hooks/dist --external hyri-preact --sourcemap=external --minify",
+    "dev:hooks": "bun run build:hooks --watch",
     "build:jsx-runtime": "bun build ./jsx-runtime/src/index.js --outdir ./jsx-runtime/dist --external hyri-preact --sourcemap=external --minify",
     "build": "bun run build:preact && bun run build:hooks && bun run build:jsx-runtime"
   },

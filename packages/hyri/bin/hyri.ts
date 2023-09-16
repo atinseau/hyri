@@ -10,7 +10,7 @@ try {
     throw new Error("Could not find hyri.config.ts")
   }
 
-  // createClientProcess();
+  createClientProcess();
   await createServerProcess();
 } catch (error) {
   print.error((error as Error)?.message || "An error occured")

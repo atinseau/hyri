@@ -1,4 +1,5 @@
 const createClientProcess = async () => {
+
   const clientFile = 'compile.ts'
   const serverProcess = Bun.spawn(['bun', '--hot', 'run', import.meta.dir + '/' + clientFile], {
     env: {

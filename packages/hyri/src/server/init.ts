@@ -1,8 +1,19 @@
+import getAppMode from "../utils/command"
+
 const createServerProcess = async () => {
   const serverFile = 'server.ts'
-  const serverProcess = Bun.spawn(['bun', '--hot', 'run', import.meta.dir + '/' + serverFile], {
+  const appMode = getAppMode()
+
+  const serverProcess = Bun.spawn([
+    'bun',
+    '--hot',
+    ...appMode === 'debug' ? ['--inspect'] : [],
+    'run',
+    import.meta.dir + '/' + serverFile
+  ], {
     env: {
       FORCE_COLOR: '1',
+      APP_MODE: appMode
     }
   })
 

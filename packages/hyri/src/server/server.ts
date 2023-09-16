@@ -1,10 +1,13 @@
-import { renderTree } from "../client/render/tree"
+import { renderTree } from "./render/tree"
 import { BuildManifest } from "../types/render"
 import { getHyriConfig } from "../utils/config"
 import print from "../utils/log"
 import { createElysia } from "./app"
+import { fetchServerContext } from "./context"
 
 // import
+
+fetchServerContext()
 
 try {
   const hyriConfig = await getHyriConfig()

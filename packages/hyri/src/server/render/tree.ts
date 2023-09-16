@@ -1,9 +1,23 @@
 import { render } from 'hyri-preact-render-to-string';
 import { Context } from "elysia";
 import { HyriRootComponent } from "../../types/render";
+import { serverContext } from '../context';
 
 type CreateHtmlTreeOptions = {
   scriptPaths?: string[]
+}
+
+const generateImportMap = () => {
+
+  console.log(serverContext)
+
+  return {
+    "imports": {
+      "hyri-preact": "/_hyri/preact.js",
+      "hyri-preact/jsx-dev-runtime": "/_hyri/jsx-runtime.js",
+      "hyri-preact/hooks": "/_hyri/hooks.js",
+    }
+  }
 }
 
 const createHtmlTree = (body: string, options?: CreateHtmlTreeOptions) => {
@@ -15,15 +29,10 @@ const createHtmlTree = (body: string, options?: CreateHtmlTreeOptions) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script type="importmap">
-{
-  "imports": {
-    "preact": "/_hyri/preact.mjs",
-    "preact/jsx-dev-runtime": "/_hyri/jsxRuntime.mjs"
-  }
-}
+${JSON.stringify(generateImportMap())}
     </script>
-    <script type="module" src="/_hyri/jsxRuntime.mjs"></script>
-    <script src="/_hyri/preact.mjs" type="module"></script>
+    <script type="module" src="/_hyri/jsx-runtime.js"></script>
+    <script type="module" src="/_hyri/preact.js" type="module"></script>
   </head>
   <body>
     <div id="root">${body}</div>

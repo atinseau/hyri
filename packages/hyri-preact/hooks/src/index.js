@@ -128,6 +128,8 @@ function getHookState(index, type) {
 	}
 	currentHook = 0;
 
+	console.log(type)
+
 	// Largely inspired by:
 	// * https://github.com/michael-klein/funcy.js/blob/f6be73468e6ec46b0ff5aa3cc4c9baf72a29025a/src/hooks/core_hooks.mjs
 	// * https://github.com/michael-klein/funcy.js/blob/650beaa58c43c33a74820a3c98b3c7079cf2e333/src/renderer.mjs
@@ -161,6 +163,11 @@ export function useState(initialState) {
  * @returns {[ any, (state: any) => void ]}
  */
 export function useReducer(reducer, initialState, init) {
+
+	if (typeof window === 'undefined') {
+		return [initialState, () => {}];
+	}
+
 	/** @type {import('./internal').ReducerHookState} */
 	const hookState = getHookState(currentIndex++, 2);
 	hookState._reducer = reducer;
@@ -261,6 +268,7 @@ export function useReducer(reducer, initialState, init) {
  */
 export function useEffect(callback, args) {
 	/** @type {import('./internal').EffectHookState} */
+	
 	const state = getHookState(currentIndex++, 3);
 	if (!options._skipEffects && argsChanged(state._args, args)) {
 		state._value = callback;
